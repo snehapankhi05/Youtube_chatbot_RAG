@@ -1,0 +1,20 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments & Virtual Directories
+.env
+.venv/
+venv/
+ENV/
+env/
+
+# IDE Configuration parameters
+.vscode/
+.idea/
+
+# Local Operating System dynamic files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
