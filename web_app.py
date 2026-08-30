@@ -98,11 +98,8 @@ if process_button and video_url:
                     "⚠️ Transcript unavailable for this video. "
                     "Please try another YouTube video with captions."
     )
-            except Exception:
-                st.sidebar.error(
-                    "⚠️ We couldn't process the transcript for this video. "
-                    "Please try another video."
-    )
+            except Exception as e:
+                st.sidebar.error(f"ERROR: {type(e).__name__}: {e}")
 
 # --- MAIN CHAT INTERFACE WINDOW ---
 # We look at st.session_state, NOT the volatile button click state
