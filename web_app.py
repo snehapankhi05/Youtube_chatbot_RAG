@@ -94,9 +94,15 @@ if process_button and video_url:
                 st.session_state.messages = [] 
                 st.sidebar.success(f"✅ Matrix loaded! {len(chunks)} chunks cached.")
             except TranscriptsDisabled:
-                st.sidebar.error("❌ Closed captions are disabled for this video link.")
-            except Exception as e:
-                st.sidebar.error(f"❌ Initialization error: {e}")
+                st.sidebar.error(
+                    "⚠️ Transcript unavailable for this video. "
+                    "Please try another YouTube video with captions."
+    )
+            except Exception:
+                st.sidebar.error(
+                    "⚠️ We couldn't process the transcript for this video. "
+                    "Please try another video."
+    )
 
 # --- MAIN CHAT INTERFACE WINDOW ---
 # We look at st.session_state, NOT the volatile button click state
@@ -125,7 +131,7 @@ if st.session_state.engine_ready:
             context_text = "\n\n".join(doc.page_content for doc in fused_docs)
 
             # Query LLM Engine via Groq
-            llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0.1, groq_api_key=os.getenv("GROQ_API_KEY"))
+            llm = ChatGroq(model="openai/gpt-oss-20b", temperature=0.1, groq_api_key=os.getenv("GROQ_API_KEY"))
             
             prompt_template = """
             You are a production-grade generative AI assistant trained to analyze transcripts.

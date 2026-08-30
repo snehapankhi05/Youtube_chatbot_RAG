@@ -1,6 +1,3 @@
-[server]
-# Stops Streamlit from scanning external library directories completely
-watchVariableFolderPattern = false
 
 [browser]
 # Ensures proper logging presentation
